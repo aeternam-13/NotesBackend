@@ -1,0 +1,6 @@
+curl -X POST http://localhost:8080/notes \
+  -H "Content-Type: application/json" \
+  -d '{"title":"My First Note", "content":"This is great!" , "color" : 4294952788}'
+
+curl -X GET http://localhost:8080/notes \
+  -H "Content-Type: application/json"
