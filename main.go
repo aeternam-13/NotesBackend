@@ -31,10 +31,14 @@ func main() {
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:36527"}, // Flutter dev server URL
+		AllowOrigins:     []string{"http://127.0.0.1:36527", "http://localhost:36527"}, // Flutter dev server URL
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		AllowCredentials: true,
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowOriginFunc: func(origin string) bool {
+			return true // TEMP: Accept any origin during dev
+		},
 	}))
 
 	r.POST("/notes", createNote)
